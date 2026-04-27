@@ -6,7 +6,14 @@ const cors     = require('cors');
 const app  = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({ origin: '*' }));
+const corsOptions = {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.options('*', cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get('/health', (_, res) => res.json({ status: 'ok' }));
