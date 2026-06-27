@@ -19,9 +19,18 @@ app.use(express.json());
 app.get('/health', (_, res) => res.json({ status: 'ok' }));
 app.use('/api/exercises', require('./routes/exercises'));
 app.use('/api/sessions',  require('./routes/sessions'));
+app.use('/api/forearm',   require('./routes/forearm'));
 
 // Listen first so Render detects the port, then connect DB
-app.listen(PORT, () => console.log(`✦ Server on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`✦ Server on port ${PORT}`);
+  // Ping self every 14 minutes to prevent Render free-tier sleep
+  if (process.env.RENDER_EXTERNAL_URL) {
+    setInterval(() => {
+      fetch(`${process.env.RENDER_EXTERNAL_URL}/health`).catch(() => {});
+    }, 14 * 60 * 1000);
+  }
+});
 
 mongoose
   .connect(process.env.MONGODB_URI)

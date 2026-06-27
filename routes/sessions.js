@@ -42,15 +42,24 @@ router.get('/exercise/:exerciseId', async (req, res) => {
   try {
     const sessions = await Session.find({
       'exercises.exercise': req.params.exerciseId,
-    }).sort({ date: 1 });
+    })
+      .sort({ date: 1 })
+      .populate('exercises.exercise');
 
     const data = sessions.map((session) => {
       const ex = session.exercises.find(
-        (e) => e.exercise.toString() === req.params.exerciseId
+        (e) => e.exercise._id.toString() === req.params.exerciseId
       );
       const maxWeight = Math.max(...ex.sets.map((s) => s.weight));
       const volume = ex.sets.reduce((sum, s) => sum + s.reps * s.weight, 0);
-      return { date: session.date, maxWeight, volume, sets: ex.sets };
+      return {
+        _id: session._id,
+        date: session.date,
+        maxWeight,
+        volume,
+        sets: ex.sets,
+        exercises: session.exercises,
+      };
     });
     res.json(data);
   } catch (err) {
