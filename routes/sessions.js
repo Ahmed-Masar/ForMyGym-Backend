@@ -79,6 +79,26 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.post('/log', async (req, res) => {
+  try {
+    const { date, exerciseId, sets } = req.body;
+    const day = new Date(date);
+    let session = await Session.findOne({ date: day });
+    if (!session) {
+      session = await Session.create({ date: day, exercises: [{ exercise: exerciseId, sets }] });
+    } else {
+      const entry = session.exercises.find((e) => e.exercise.toString() === exerciseId);
+      if (entry) entry.sets.push(...sets);
+      else session.exercises.push({ exercise: exerciseId, sets });
+      await session.save();
+    }
+    const populated = await session.populate('exercises.exercise');
+    res.status(201).json(populated);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 router.post('/', async (req, res) => {
   try {
     const session = await Session.create(req.body);

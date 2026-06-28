@@ -9,20 +9,20 @@ const exercises = [
   { name: 'Incline Hammer Chest Press',  category: 'Chest' },
   { name: 'Machine Decline Chest Press', category: 'Chest' },
   { name: 'Pec Deck Machine',            category: 'Chest' },
-  { name: 'Larry Scott Curl',            category: 'Arms'  },
-  { name: 'Incline Dumbbell Curl',       category: 'Arms'  },
-  { name: 'Hammer Curl',                 category: 'Arms'  },
-  { name: 'Wrist Curls',                 category: 'Arms'  },
+  { name: 'Larry Scott Curl',            category: 'Biceps'  },
+  { name: 'Incline Dumbbell Curl',       category: 'Biceps'  },
+  { name: 'Hammer Curl',                 category: 'Biceps'  },
+  { name: 'Wrist Curls',                 category: 'Biceps'  },
 
   // Day 2 — Back & Triceps
   { name: 'Lat Pulldown',                    category: 'Back' },
   { name: 'Close-Grip Seated Cable Row',     category: 'Back' },
   { name: 'T-Bar Row',                       category: 'Back' },
   { name: 'Back Extension',                  category: 'Back' },
-  { name: 'Triceps Pushdown Machine',        category: 'Arms' },
-  { name: 'Triceps Extension Machine',       category: 'Arms' },
-  { name: 'Low Pulley Overhead Extension',   category: 'Arms' },
-  { name: 'Triceps Rope Pushdown',           category: 'Arms' },
+  { name: 'Triceps Pushdown Machine',        category: 'Triceps' },
+  { name: 'Triceps Extension Machine',       category: 'Triceps' },
+  { name: 'Low Pulley Overhead Extension',   category: 'Triceps' },
+  { name: 'Triceps Rope Pushdown',           category: 'Triceps' },
 
   // Day 3 — Shoulders, Traps & Forearms
   { name: 'Machine Shoulder Press', category: 'Shoulders' },
@@ -30,7 +30,7 @@ const exercises = [
   { name: 'Cable Lateral Raise',    category: 'Shoulders' },
   { name: 'Reverse Pec Deck Fly',   category: 'Shoulders' },
   { name: 'Dumbbell Shrugs',        category: 'Shoulders' },
-  { name: 'Reverse Barbell Curl',   category: 'Arms'      },
+  { name: 'Reverse Barbell Curl',   category: 'Biceps'      },
 
   // Day 4 — Legs
   { name: 'Leg Press',            category: 'Legs' },
